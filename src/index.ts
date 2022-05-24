@@ -115,7 +115,10 @@ async function run() {
           pr_number,
         },
       });
+      core.info('TESTTT');
       core.debug(response);
+      core.info('TESTTT2');
+      core.info(response);
       core.info("Review App created");
     } catch (error) {
       core.error(JSON.stringify(error));
