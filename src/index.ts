@@ -56,8 +56,6 @@ async function run() {
 
       const app = reviewApps.find((app) => app.pr_number == pr_number);
       if (app) {
-        core.info("OMG");
-        core.info(JSON.Stringify(reviewApps));
         core.info("Destroying Review App");
         await heroku!.delete(`/review-apps/${app.id}`);
         core.info("Review App destroyed");
@@ -124,6 +122,25 @@ async function run() {
       core.info("Review App created");
     } catch (error) {
       core.error(JSON.stringify(error));
+    }
+
+    core.info("Fetching Review Apps list");
+    try {
+      const reviewApps: ReviewApp[] = await heroku!.get(
+        `/pipelines/${pipeline}/review-apps`
+      );
+
+      const app = reviewApps.find((app) => app.pr_number == pr_number);
+      if (app) {
+        core.info("OMG");
+        core.info(JSON.Stringify(reviewApps));
+        core.info("Destroying Review App");
+        await heroku!.delete(`/review-apps/${app.id}`);
+        core.info("Review App destroyed");
+      }
+    } catch (error) {
+      core.error(JSON.stringify(error));
+      return;
     }
   };
 
