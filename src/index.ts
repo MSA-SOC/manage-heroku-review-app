@@ -56,6 +56,8 @@ async function run() {
 
       const app = reviewApps.find((app) => app.pr_number == pr_number);
       if (app) {
+        core.info("OMG");
+        core.info(JSON.Stringify(reviewApps));
         core.info("Destroying Review App");
         await heroku!.delete(`/review-apps/${app.id}`);
         core.info("Review App destroyed");
@@ -92,7 +94,7 @@ async function run() {
       });
 
     try {
-      core.info("Creating Review App");
+      core.info("Creating ReviewAAA App");
       core.debug(
         JSON.stringify({
           branch,
