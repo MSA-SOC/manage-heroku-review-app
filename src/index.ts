@@ -92,7 +92,7 @@ async function run() {
       });
 
     try {
-      core.info("Creating Review App");
+      core.info("Creating ReviewAAA App");
       core.debug(
         JSON.stringify({
           branch,
