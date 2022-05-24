@@ -116,6 +116,7 @@ async function run() {
         },
       });
       core.debug(response);
+      core.info(response);
       core.info("Review App created");
     } catch (error) {
       core.error(JSON.stringify(error));
